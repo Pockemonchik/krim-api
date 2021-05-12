@@ -4,10 +4,14 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const session = require('express-session');
 const path = require('path');
-
+const cors = require('cors');
 
 
 const app = express();
+var options = {
+  origin: '*'
+};
+app.use(cors(options));
 
 //Set Up the Assets Folder
 app.use(express.static(path.join(__dirname, 'public')));
@@ -55,8 +59,9 @@ app.use(passport.session());
 
 // Routes
 app.use('/', require('./routes/index.js'));
-
+app.use('/api', require('./api/api'));
 
 const PORT = process.env.PORT || 8000;
+
 
 app.listen(PORT, console.log(`Server started on port ${PORT}`));

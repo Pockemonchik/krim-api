@@ -1,24 +1,20 @@
 const express = require('express');
 const router = express.Router();
 
-/**Toy Car Controller */
-const { getToyCars, getToyCarById, addToyCar, updateToyCar, deleteToyCar } = require('../controllers/toycar-controller');
 
-/**
- * 
- * 
- * Add your routes for your API endpoints here. Don't forget to add your  controller!  
- */
+const { getObjectDescriptions, addObjectDescription} = require('../controllers/objectDescription-controller.js');
+
+
 
 router
-    .route('/toycars/')
-    .get(getToyCars)
-    .post(addToyCar)
+    .route('/objectDescriptions/')
+    .get(getObjectDescriptions)
+    .post(addObjectDescription)
 
-route
-    .route('/toycars/:id')
-    .get(getToyCarById)
-    .delete(deleteToyCar)
-    .put(updateToyCar)
+// route
+//     .route('/objectDescription/:id')
+//     .get(getObjectDescriptionById)
+//     .delete(deleteObjectDescription)
+//     .put(updateObjectDescription)
 
 module.exports = router;
