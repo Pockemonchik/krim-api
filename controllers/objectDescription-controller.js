@@ -1,5 +1,6 @@
 const ObjectDescription = require('../models/ObjectDescription')
 
+
 exports.getObjectDescriptions = async (req, res, next) =>{
     try {
         const result = await ObjectDescription.find();
@@ -20,6 +21,8 @@ exports.getObjectDescriptions = async (req, res, next) =>{
 exports.addObjectDescription = async (req, res, next) => {
     try {
         const result = await ObjectDescription.create(req.body);
+        console.log(req.body,"body")
+        console.log(req.file,"file")
         return res.status(201).json({
             success: true,
             data: result
