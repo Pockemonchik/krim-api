@@ -20,9 +20,11 @@ exports.getObjectDescriptions = async (req, res, next) =>{
 
 exports.addObjectDescription = async (req, res, next) => {
     try {
-        const result = await ObjectDescription.create(req.body);
-        console.log(req.body,"body")
-        console.log(req.file,"file")
+        const objectDescription = new ObjectDescription()
+        objectDescription.name = req.body.name
+        objectDescription.image = req.file.filename
+        objectDescription.image_url = "http://localhost:8000/uploads/"+req.file.filename
+        const result = await objectDescription.save();
         return res.status(201).json({
             success: true,
             data: result

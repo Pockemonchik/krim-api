@@ -14,8 +14,7 @@ var options = {
 app.use(cors(options));
 
 //Set Up the Assets Folder
-app.use(express.static(path.join(__dirname, 'public')));
-
+app.use('/uploads', express.static(__dirname + '/uploads'));
 // Passport Config
 // require('./config/passport')(passport);
 
