@@ -48,3 +48,72 @@ exports.addObjectDescription = async (req, res, next) => {
         }
     }
 }
+
+exports.deleteObjectDescription = async (req, res, next) => {
+    try {
+        const objectDescription = await ObjectDescription.findById(req.params.id);
+        if (!objectDescription) {
+            return res.status(404).json( {
+                success: false,
+                error: 'objectDescription Not Found'
+            })
+        }
+
+        await objectDescription.remove();
+
+        return res.status(200).json({
+            success: true,
+            data: {}
+        })
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            error: `Error Deleting objectDescription: ${error.message}`
+        })
+    }
+}
+
+exports.getObjectDescriptionById = async (req, res, next) => {
+    try {
+        const objectDescription = await ObjectDescription.findById(req.params.id);
+        if (!objectDescription) {
+            return res.status(404).json( {
+                success: false,
+                error: 'objectDescription Not Found'
+            })
+        }
+        return res.status(200).json({
+            success: true,
+            data: objectDescription
+        })
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            error: `Error Getting objectDescription ${req.params.id}: ${error.message}`
+        })
+    }
+}
+
+exports.updateObjectDescription = async (req, res, next) => {
+    try {
+        const objectDescription = await ObjectDescription.findById(req.params.id).exec();
+        if (!objectDescription) {
+            return res.status(404).json( {
+                success: false,
+                error: 'objectDescription Not Found'
+            })
+        }
+        console.log(req.body)
+        objectDescription.set(req.body);
+        var update = await objectDescription.save();
+        return res.status(200).json({
+            success: true,
+            data: update
+        })
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            error: `Error Getting objectDescription ${req.params.id}: ${error.message}`
+        })
+    }
+}

@@ -31,7 +31,7 @@ const storage = multer.diskStorage({
 
 
 
-const { getObjectDescriptions, addObjectDescription} = require('../controllers/objectDescription-controller.js');
+const {getObjectDescriptionById, updateObjectDescription, getObjectDescriptions, addObjectDescription, deleteObjectDescription} = require('../controllers/objectDescription-controller.js');
 
 
 
@@ -40,10 +40,10 @@ router
     .get(getObjectDescriptions)
     .post(upload.single("image"),addObjectDescription)
 
-// route
-//     .route('/objectDescription/:id')
-//     .get(getObjectDescriptionById)
-//     .delete(deleteObjectDescription)
-//     .put(updateObjectDescription)
+router
+    .route('/objectDescriptions/:id')
+    .get(getObjectDescriptionById)
+    .delete(deleteObjectDescription)
+    .put(updateObjectDescription)
 
 module.exports = router;
