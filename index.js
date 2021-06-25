@@ -60,7 +60,7 @@ app.use(passport.session());
 app.use('/', require('./routes/index.js'));
 app.use('/api', require('./api/api'));
 
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 80;
 
 
 app.listen(PORT, console.log(`Server started on port ${PORT}`));
