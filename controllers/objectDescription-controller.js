@@ -24,7 +24,7 @@ exports.addObjectDescription = async (req, res, next) => {
         objectDescription.name = req.body.name
         objectDescription.category = req.body.category
         objectDescription.image = req.file.filename
-        objectDescription.image_url = "http://192.168.0.109/uploads/"+req.file.filename
+        objectDescription.image_url = "http://83.136.233.145/uploads/"+req.file.filename
         const result = await objectDescription.save();
         return res.status(201).json({
             success: true,
