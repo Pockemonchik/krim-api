@@ -105,6 +105,9 @@ exports.updateObjectDescription = async (req, res, next) => {
             })
         }
         console.log(req.body)
+        console.log(req.file)
+        objectDescription.image = req.file.filename
+        objectDescription.image_url = "http://83.136.233.145/uploads/"+req.file.filename
         objectDescription.set(req.body);
         var update = await objectDescription.save();
         return res.status(200).json({
