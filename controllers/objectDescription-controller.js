@@ -97,15 +97,16 @@ exports.getObjectDescriptionById = async (req, res, next) => {
 
 exports.updateObjectDescription = async (req, res, next) => {
     try {
-        const objectDescription = await ObjectDescription.findById(req.params.id).exec();
+        const objectDescription = await ObjectDescription.findById(req.params.id);
         if (!objectDescription) {
             return res.status(404).json( {
                 success: false,
                 error: 'objectDescription Not Found'
             })
         }
-        console.log(req.body)
-        console.log(req.file)
+ 
+        console.log("body",req.body)
+        console.log("file",req.file)
         objectDescription.image = req.file.filename
         objectDescription.image_url = "http://83.136.233.145/uploads/"+req.file.filename
         objectDescription.set(req.body);

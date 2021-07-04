@@ -44,6 +44,6 @@ router
     .route('/objectDescriptions/:id')
     .get(getObjectDescriptionById)
     .delete(deleteObjectDescription)
-    .put(updateObjectDescription)
+    .post(upload.single("image"),updateObjectDescription)
 
 module.exports = router;
